@@ -1,0 +1,66 @@
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="description" content="{{- .Params.description -}}" />
+
+  {{- if .Permalink -}}
+  <meta name="canonical" content="{{- .Permalink -}}" />
+  {{- end -}}
+
+  <link rel="icon" href="{{ .Site.BaseURL }}/images/favicon.png" type="image/png" />
+  
+  {{/* Being nice with gohugo.io */}}
+  {{ hugo.Generator }}
+
+  {{ partial "head/favicon.html" . }}
+
+  <!-- Open Graph -->
+  {{- partial "head/opengraph.html" . -}}
+
+  <!-- Twitter Cards -->
+  {{- partial "head/twitter_cards.html" . -}}
+
+  <!-- Schema.org -->
+  {{- partial "head/schema.html" . -}}
+
+  <!-- Dublin Core -->
+  {{- partial "head/dublin_core.html" . -}}
+
+  <!-- FOUC -->
+  <script>
+    document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');
+  </script>
+
+  {{- with .OutputFormats.Get "rss" -}}
+  <!-- RSS Feed -->
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+  {{- end -}}
+
+
+  {{- if .Site.IsServer }}
+  <style>
+    {{- $style := resources.Get "styles/main.scss" | resources.ToCSS -}}
+    {{- $sass := $style.Content -}}
+    {{ $sass | safeCSS }}
+  </style>
+  {{- else }}
+  <style>
+    {{- $style := resources.Get "styles/main.scss" | resources.ToCSS | resources.PostCSS | resources.Minify -}}
+    {{- $sass := $style.Content -}}
+    {{ $sass | safeCSS }}
+  </style>
+  {{- end }}
+  
+  <script>
+    window.pageScripts = [];
+  </script>
+
+  <script src="{{ .Site.BaseURL }}lib/ready.min.js" defer></script>
+  <script src="{{ .Site.BaseURL }}lib/fastactive.min.js" defer></script>
+  <script src="{{ .Site.BaseURL }}lib/velocity.min.js" defer></script>
+  <script src="{{ .Site.BaseURL }}lib/barba.min.js" defer></script>
+  <script src="{{ .Site.BaseURL }}lib/espacefine.min.js" defer></script>
+  <script src="{{ .Site.BaseURL }}lib/smooth-scroll.min.js" defer></script>
+
+  {{ $mainJS := resources.Get "scripts/main.js" | resources.Minify -}}
+  <script src="{{ $mainJS.Permalink }}" defer></script>

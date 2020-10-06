@@ -1,0 +1,15 @@
+{{- define "main" }}
+<article class="article-single">
+  {{- partial "text-header" . -}}
+
+  <div class="container text-body content">
+    {{ .Content }}
+
+    {{ partial "page-bibliography.html" . }}
+
+  </div>
+</article>
+
+{{ partial "prev-next-sections.html" .}}
+
+{{ end -}}

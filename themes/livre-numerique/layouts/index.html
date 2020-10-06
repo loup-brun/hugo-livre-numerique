@@ -1,0 +1,20 @@
+{{ define "main" }}
+<article class="article-index landing">
+  <div class="container-full">
+    {{/* Yes, I am doing double containers. */}}
+    <header class="header-index container-full">
+      <h1>
+        <span>{{ .Site.Title | markdownify }}</span>
+      </h1>
+    </header>
+
+    <section class="container content">
+      {{ if .Site.Params.description }}
+      <p class="index-subtitle">{{ .Site.Params.description | markdownify }}</p>
+      {{ end }}
+
+      {{ .Content }}
+    </section>
+  </div>
+</article>
+{{ end }}

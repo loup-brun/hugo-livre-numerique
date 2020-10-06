@@ -1,0 +1,108 @@
+{{/*
+  Mostly copied and adapted from EcritureNumerique's semantic HTML template
+
+  https://github.com/EcrituresNumeriques/chaineEditorialeSP/blob/master/templates/templateHtmlDcV2.html5
+*/}}
+
+{{- $title := "" -}}
+{{- if isset .Params "title" -}}
+{{- $title = printf "%s / %s" .Params.title .Site.Title -}}
+{{- else -}}
+{{- $title = .Site.Title -}}
+{{- end -}}
+
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<link rel="DCTERMS.subject" href="http://rameau.bnf.fr"/>
+<link rel="schema.prism" href="http://prismstandard.org/namespaces/basic/2.0/"/>
+
+{{/* Dublin Core Metadata */}}
+<meta name="DC.type" content="Text" />
+<meta name="DC.format" content="text/html" />
+<meta name="DC.type" content="journalArticle" />
+<meta name="DC.type" class="typeArticle" content="website" />
+<meta name="DC.title" content="{{ $title }}" />
+<meta name="DC.title.Main" content="{{ .Site.Title }}" />
+
+{{/* google scholar */}}
+<meta name="citation_title" content="{{ $title }}" />
+{{- if or .Site.Params.subtitle .Params.subtitle -}}
+<meta name="DC.title.Subtitle" content="{{ if .Params.subtitle }}{{ .Params.subtitle }}{{ else if .Site.Params.subtitle }}{{ .Site.Params.subtitle }}{{ end }}" />
+<meta name="citation_subtitle" content="{{ if isset .Params "subtitle" }}{{ .Params.subtitle }}{{ else if (isset .Site.Params "description") }}{{ .Site.Params.description | markdownify }}{{ end }}" />
+{{- end -}}
+<meta name="DC.publisher" class="editeur" content="loupbrun.ca" />
+<meta name="DC.publisher" class="producteur" content="{{ .Site.Params.Author }}" />
+
+<meta name="citation_publisher" content="loupbrun.ca" />
+{{- if .Site.Params.prodnumber -}}
+<meta name="DC.publisher" class="producteurNum" content="{{ .Site.Params.prodnumber}}" />
+{{- end -}}
+<meta name="DC.publisher" class="diffuseur" content="{{ .Site.Params.Author }}" />
+<meta name="DC.language" content="{{ .Language.Lang  | default "fr" }}" />
+<meta name="DC.date" class="completeDate" content="{{ now.Format "2006-01-02" }}" />
+<meta name="DC.date" class="year" content="{{ now.Format "2006" }}" />
+
+{{/* google scholar */}}
+<meta name="citation_online_date" content="{{ now.Format "2006-01-02" }}" />
+
+{{/* google scholar */}}
+<meta name="citation_publication_date" content="{{ now.Format "2006-01-02" }}" />
+{{- if isset .Site.Params "license" -}}
+<meta name="DC.rights" content="{{ .Site.Params.license.name }}" />
+{{- end -}}
+<meta name="DC.source" content="{{ .Site.Title }}" />
+<meta name="DC.relation.isPartOf" content="{{ .Site.BaseURL }}" />
+
+{{- if .IsPage -}}
+<meta name="url" content="{{ .Page.Permalink }}" />
+{{- end -}}
+
+{{- if isset .Site.Params "identifier" -}}
+<meta name="DC.identifier" content="{{ .Site.Params.identifier }}" />
+{{- end -}}
+
+{{- if isset .Site.Params "issn" -}}
+<meta name="DC.identifier" class="issn" content="{{ .Site.Params.issn }}" />
+
+{{/* google scholar */}}
+<meta name="citation_issn" content="{{ .Site.Params.issn }}" />
+<meta name="citation_isbn" content="{{ .Site.Params.issn }}" />
+
+{{- end -}}
+
+{{/* Auteur de l'article */}}
+{{/* TODO : support multiple authors */}}
+{{- if .Site.Params.Author -}}
+<meta name="author" content="{{ .Site.Params.Author }}" />
+<meta name="DC.creator" content="{{ .Site.Params.Author }}" />
+
+{{/* google scholar */}}
+<meta name="citation_authors" content="{{ .Site.Params.Author }}" />
+{{- end -}}
+
+
+{{/* Résumé de l'article */}}
+{{/* TODO : support description in multiple langauges */}}
+{{- if .Params.description -}}
+<meta name="description" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ .Params.description | markdownify }}" />
+<meta name="DC.description" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ .Params.description | markdownify }}" />
+{{- end -}}
+
+
+{{/* Keywords */}}
+{{/* TODO : support keywords in multiple langauges */}}
+{{- if .Site.Params.keywords -}}
+<meta name="keywords" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ range .Site.Params.keywords -}}{{- . -}}, {{- end }}" />
+{{/* google scholar */}}
+<meta name="citation_keywords" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ range .Site.Params.keywords -}}{{- . -}}, {{- end }}" />
+{{- range .Site.Params.keywords -}}
+<meta name="DC.subject" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ . }}" />
+{{- end -}}
+{{- end -}}
+
+<!-- schema citation : Indexation pour Google Scholar  -->
+
+<meta name="citation_language" content="{{ .Language.Lang }}" />
+
+{{- if isset .Params "description" -}}
+<meta name="citation_abstract" xml:lang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}" content="{{ .Params.description | markdownify }}" />
+{{- end -}}

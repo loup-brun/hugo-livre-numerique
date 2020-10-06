@@ -1,0 +1,25 @@
+{{ define "main" }}
+
+<article class="article-list">
+  {{- partial "text-header" . -}}
+
+  <div class="container content">
+    {{ .Content }}
+
+    <nav class="nav nav-posts">
+      <ul class="table-list">
+        {{ range .Pages }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </nav>
+
+    {{ partial "page-bibliography.html" . }}
+  </div>
+</article>
+
+{{ partial "prev-next-sections.html" .}}
+
+{{ end }}

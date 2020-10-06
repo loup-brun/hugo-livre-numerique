@@ -1,0 +1,64 @@
+{{ define "main" }}
+<article class="article-annotations">
+  {{- partial "text-header" . -}}
+  
+  <div class="container">
+    {{ .Content }}
+
+    {{- range $.Site.Data.annotations_mjfr }}
+    {{- range . }}
+    <hr>
+
+    <section class="annotation-block block">
+      <header class="annotation__header">
+        {{ if .user }}
+        <a class="strong" href="https://hypothes.is/users/{{ .user }}">{{ .user }}</a>
+        {{ end }}
+
+        {{ if .group }}
+        <small>
+          <a href="https://hypothes.is/groups/{{ .group }}">
+            {{ if not (eq .group "__world__") }}
+            {{ .group }}
+            {{ else }}
+            (Public)
+            {{ end }}
+          </a>
+        </small>
+        {{ end }}
+
+        {{ if .updated }}
+        – <a href="https://hypothes.is/a/{{ .id }}"><time>{{ .updated }}</time></a>
+        {{ end }}
+      </header>
+
+      {{ if .exact }}
+      <blockquote class="annotation__exact">
+        {{ .exact | markdownify}}
+      </blockquote>
+      {{ end }}
+
+      {{ if .text }}
+      <div class="annotation__comment">
+        {{ .text | markdownify }}
+      </div>
+      {{ end }}
+
+      {{ if .tags }}
+      <ul class="annotation__tags">
+        {{ range .tags }}
+        <li>
+          <code>
+            <a href="https://hypothes.is/search?q=tag:{{ . }}">{{ . }}</a>
+          </code>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+
+    </section>
+    {{ end -}}
+    {{ end -}}
+  </div>
+</article>
+{{ end }}

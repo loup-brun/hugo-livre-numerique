@@ -1,0 +1,14 @@
+.annotation {
+  &__exact {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 0;
+    padding-left: 2em;
+
+    font-family: $font-family-text;
+    font-style: italic;
+    
+    border-left: 2px solid $c-darker;
+    color: $c-dark;
+  }
+}

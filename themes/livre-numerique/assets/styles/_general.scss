@@ -1,0 +1,289 @@
+//-------------------------------------------------------------------
+//  General Min Styling
+//-------------------------------------------------------------------
+
+%font-main {
+  font-family: $font-family-sans;
+  font-weight: 400;
+  line-height: $line-height;
+  font-size: 16px;
+  hyphens: auto;
+}
+
+%clearfix {
+  :after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+::selection {
+  background-color: $c-primary;
+  color: #000;
+}
+::-moz-selection {
+  background-color: $c-primary;
+  color: #000;
+}
+
+html {
+  @extend %font-main;
+}
+
+body {
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after {
+  outline: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0;
+  width: auto;
+  max-width: 900px;
+  padding: 0 6vw;
+}
+.container-full {
+  @extend .container;
+  max-width: none;
+}
+
+// this extends into both nav a and .btn
+%no-underline {
+  text-decoration: none;
+}
+
+// shared large text size
+%txt-large {
+  font-size: 2em;
+}
+
+// shared smaller text size
+%shared-font-size {
+  font-size: 1em;
+}
+
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  position: relative;
+//  display: inline-block;
+  padding: 0.05em 0;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+}
+
+.link-hover {
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1.4em;
+    z-index: -1;
+    background-color: $c-primary;
+    transition: 0.7s width 0s cubic-bezier(0.77, 0, 0.175, 1);
+  }
+  
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+  
+  &:active {
+    &::after {
+      background-color: darken($c-primary, 5%);
+    }
+  }
+}
+
+.link-hover-left {
+  @extend .link-hover;
+  &::after {
+    left: 0;
+  }
+}
+.link-hover-right {
+  @extend .link-hover;
+  &::after {
+    left: auto;
+    right: 0;
+  }
+}
+
+.article-index {
+  padding-top: 2vh;
+  padding-bottom: 10vh;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: 900;
+  margin: 0.75em 0 0;
+  line-height: 1.12;
+  
+  + p {
+    margin-top: 0.5em;
+  }
+}
+
+p, ul, ol, blockquote, h1, h2, h3, h3, h4, h5, h6 {
+  max-width: 35em;
+  
+  a, sup a, .footnote-return {
+    border-color: $c-primary;
+    border-color: rgba($c-primary, 1);
+    color: $c-primary;
+    transition: border-color .4s;
+    
+    &:hover {
+      border-color: rgba($c-primary, .4);
+    }
+  }
+}
+
+blockquote {
+  line-height: 1.21;
+  font-size: 0.91em;
+}
+
+strong, .strong {
+  font-weight: 900;
+}
+em, .em {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 3.5em;
+  @media (max-width: 400px) {
+    font-size: 2.2em;
+  }
+  @media (min-width: 600px) {
+    font-size: 7.5vw;
+  }
+  @media (min-width: 1200px) {
+    font-size: 5.5em;
+  }
+}
+
+h2 {
+  font-size: 2em;
+  @media (max-width: 400px) {
+    font-size: 1.6em;
+  }
+}
+
+h3 {
+  font-size: 1.72em;
+  @media (max-width: 400px) {
+    font-size: 1.5em;
+  }
+}
+
+h4 {
+  font-size: 1.42em;
+}
+
+h5 {
+  font-size: 1.3em;
+}
+
+h6 {
+  font-size: 1em;
+}
+
+h1 {
+  
+  > span {
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      background: $c-primary;
+      height: 0.35em;
+      width: 1.8em;
+      z-index: -1;
+      right: -0.5em;
+      bottom: 0.1em;
+    }
+  }
+}
+
+.table-list {
+  list-style: none outside none;
+  margin: 1.5em 0;
+  padding: 0;
+  
+  > li {
+    margin: 1em 0;
+    border-bottom: 1px solid #000;
+    
+    > a {
+      @extend .link-hover-left;
+      border: 0;
+      color: $c-black;
+    }
+  }
+}
+
+.meta-article {
+  @extend %font-main;
+  font-style: italic;
+  margin: 1em 0;
+}
+
+.landing {
+  padding: 5vw 0;
+  
+  h1 {
+    margin: 0 0 0.5em;
+  }
+}
+
+.index-subtitle {
+  font-size: 1.5em;
+  margin-bottom: 2rem;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background-color: #000;
+  margin: 2rem auto;
+}
+
+.next-section {
+  margin-top: 5rem;
+  font-size: 1.45rem;
+  text-align: right;
+}
+
+#vis {
+  max-width: 100%;
+}
+
+.footnotes {
+  font-size: .91em;
+  line-height: 1.21;
+  
+  :target {
+    // transition: account for scroll behavior delay
+    animation: highlight 3s;
+  }
+}

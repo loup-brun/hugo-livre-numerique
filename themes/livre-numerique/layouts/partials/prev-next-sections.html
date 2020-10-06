@@ -1,0 +1,42 @@
+{{ if or .PrevInSection .NextInSection }}
+<nav class="nav-article container">
+  {{- if .NextInSection }}
+  <div class="nav-previous">
+    <a class="article-nav-link-wrap" href="{{ .NextInSection.Permalink }}">
+      &larr; {{ i18n "next_page" | default "Précédente :" }} <em class="strong">{{ .NextInSection.Title }}</em>
+    </a>
+  </div>
+  {{ end -}}
+  {{- if .PrevInSection }}
+  <div class="nav-next">
+    <a class="article-nav-link-wrap" href="{{ .PrevInSection.Permalink }}"> 
+      {{ i18n "prev_page" | default "Suivante :" }} <em class="strong">{{ .PrevInSection.Title }}</em> &rarr;
+    </a>
+  </div>
+  {{ end -}}
+</nav>
+{{ end }}
+
+{{ if not .PrevInSection }}
+<nav class="next-section container">
+  {{- $nextSection := false }}
+  {{- $currentPage := . }}
+
+  {{- range $.Site.Sections }}
+
+  {{- if $nextSection }}
+  Section suivante : 
+  <a href="{{ .Permalink }}">
+    <em class="strong">{{- .Title | markdownify }}</em></e>
+  </a>
+  &rarr;
+  {{- $nextSection = false }}
+  {{ end }}
+
+  {{- if eq $currentPage.CurrentSection.Name .Name }}
+  {{- $nextSection = true }}
+  {{- end }}
+
+  {{- end }}
+</nav>
+{{ end }}

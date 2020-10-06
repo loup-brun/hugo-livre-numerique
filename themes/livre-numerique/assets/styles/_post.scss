@@ -1,0 +1,44 @@
+//-------------------------------------------------------------------
+//  Post
+//-------------------------------------------------------------------
+
+.text-body {
+  font-family: $font-family-text;
+  font-size: 1.375rem;
+  font-weight: normal;
+  line-height: 1.62;
+  hyphens: auto;
+  max-width: 42em;
+  margin-right: auto;
+  margin-left: 2rem;
+  margin-bottom: 1.5em;
+  
+  h2 {
+    font-size: 2.75rem;
+  }
+  h3 {
+    font-size: 2rem;
+    font-style: italic;
+  }
+}
+
+.nav-article {
+  margin: 1em auto;
+  text-align: right;
+  
+  > div {
+    padding: 0.5em;
+    margin: 0.5em;
+    
+    &.nav-next {
+      a {
+        @extend .link-hover-left;
+      }
+    }
+    &.nav-previous {
+      a {
+        @extend .link-hover-right;
+      }
+    }
+  }
+}

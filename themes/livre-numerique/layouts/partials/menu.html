@@ -1,0 +1,23 @@
+<aside id="fullscreen-menu" class="fullscreen-menu">
+  <nav class="nav-posts">
+    <ul class="posts-list">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main.ByWeight }}
+      <li class="{{if or ($currentPage.IsMenuCurrent "main" . ) ($currentPage.HasMenuCurrent "main" . ) }}active{{ end }}">
+        <a href="{{ .URL }}">{{ .Title }}</a>
+      </li>
+      {{ end }}
+    </ul>
+    
+    
+    <div class="menu-title">Sections</div>
+      <ul class="posts-list">
+        {{ $currentPage := . }}
+        {{ range .Site.Menus.sections.ByWeight }}
+        <li class="{{if or ($currentPage.IsMenuCurrent "main" . ) ($currentPage.HasMenuCurrent "main" . ) }}active{{ end }}">
+          <a href="{{ .URL }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+  </nav>
+</aside>

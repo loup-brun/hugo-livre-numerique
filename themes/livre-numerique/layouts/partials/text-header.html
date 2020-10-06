@@ -1,0 +1,8 @@
+<header class="text-header container-full">
+  <h1>
+    <span>{{ .Title | markdownify }}</span>
+  </h1>
+  {{- if .Params.Author -}}
+  <div class="meta-article">par {{ .Params.Author | markdownify }}</div>
+  {{ end }}
+</header>

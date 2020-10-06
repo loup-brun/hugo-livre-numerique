@@ -1,0 +1,173 @@
+# Hugo config file
+# https://gohugo.io/
+
+
+#########################################
+# Site title
+#########################################
+title: Livre numérique
+
+
+#########################################
+# Site URL
+# 
+# can be something like:
+# - / or ""
+# - /base/
+# - http://example.com
+# - http://example.com/base/
+#########################################
+baseURL: /
+
+# Canonify URLs: build long formed links
+#canonifyURLs: true
+
+
+
+#########################################
+# Content
+#
+# Process HTML, Markdown files
+#########################################
+contentDir: content
+
+
+#########################################
+# Languages
+#########################################
+DefaultContentLanguage: fr
+languageCode: fr
+
+# Enable multilingual mode
+#languages:
+#  en: 
+#    languageName: English
+#    weight: 1
+#    title: 
+#    # Language-specific params
+#    params:
+#
+#  fr:
+#    languageName: Français
+#    weight: 2
+#    title: 
+#    # Language-specific params
+#    params:
+#      description: 
+
+
+#########################################
+# Copyright
+#########################################
+copyright: CC-BY-SA 4.0
+
+
+#########################################
+# Author
+#########################################
+author:
+  name: # Gustave Flaubert
+  first: # Gustave
+  last:  # Flauberg
+  email: #gustave@flauvert.org
+  uri: # http://flaubert.org
+  twitter: # g_flaubert
+
+
+#########################################
+# Social
+#########################################
+Social:
+  facebook:
+  twitter:
+
+
+#########################################
+# Menu
+#########################################
+menu:
+
+  main:
+  - name: a-propos
+    title: À propos
+    url: /a-propos
+    weight: 1
+
+  sections:
+  - identifier: table-des-matieres
+    title: Table des matières
+    url: /table-des-matieres/
+    weight: 1
+  - identifier: chapitres
+    title: Chapitres
+    url: /chapitres/
+    weight: 2
+  - identifier: colophon
+    title: Colophon
+    url: /colophon/
+    weight: 3
+
+# Lazy menu sections
+# Automatically add all sections to the "main" menu
+#sectionPagesMenu: main
+
+
+#########################################
+# Theme
+#
+# Extend with files in the `themes/` dir.
+# Some params may have to be edited.
+#########################################
+theme: livre-numerique
+
+
+#########################################
+# Markup
+#
+# Markdown rendering engine
+#########################################
+markup:
+  goldmark:
+    extensions:
+      # Smartypants-like quotes extension
+      typographer: true
+    renderer:
+      # Enalbe HTML tags in markdown
+      unsafe: true
+
+
+#########################################
+# Git integration
+#
+# Link to Git revision history.
+# Please fill the `repo` property in the
+# `params` section.
+#########################################
+# enableGitInfo: true
+
+
+#########################################
+# Params
+#
+# Non-core fields to customize your site.
+#########################################
+params:
+
+  # Default/generic description
+  description: "Un modèle de livre numérique avec [Hugo](https://gohugo.io/)."
+  
+  license: 
+    url: https://creativecommons.org/licenses/by-sa/4.0/legalcode.fr
+  
+  # Git repo (set `enableGitInfo: true` above)
+  #repo: https://github.com/user/repo
+  
+  # Open Graph images (Facebook, Twitter)
+  # Must be a *list*, e.g. lines starting with a dash
+  # 
+  #   - /absolute/path/to/img.jpg
+  #
+  # or comma-separated items surrounded by square brackets
+  #   [/featured.jpg, /preview.jpg, ...]
+  images:
+  #- /img/featured.jpg

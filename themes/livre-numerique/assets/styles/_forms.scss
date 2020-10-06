@@ -1,0 +1,39 @@
+@if $import-forms == true {
+//-------------------------------------------------------------------
+//  Form Elements
+//-------------------------------------------------------------------
+
+form > * {
+  display: block;
+  margin-bottom: 10px;
+}
+
+label > * {
+  display: inline;
+}
+
+input, textarea {
+  @extend %shared-font-size;
+
+  &:focus {
+    border-color: $c-focus;
+  }
+}
+
+
+input[type='text'], textarea {
+  -webkit-appearance: none; // make iOS inputs pretty
+  width: 13em;
+}
+
+
+.addon {
+  @extend %shared-font-size;
+  box-shadow: 0 0 0 1px $c-grey;
+  padding: 8px 12px;
+}
+
+
+//-------------------------------------------------------------------
+// End @if
+}

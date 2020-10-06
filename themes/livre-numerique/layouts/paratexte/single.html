@@ -1,0 +1,14 @@
+{{- define "main" }}
+<article class="text-paratexte">
+  {{- partial "text-header" . -}}
+
+  <div class="container content">
+    {{ .Content }}
+
+    {{ partial "page-bibliography.html" . }}
+  </div>
+</article>
+
+{{ partial "prev-next-sections.html" .}}
+
+{{ end -}}

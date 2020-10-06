@@ -1,0 +1,33 @@
+@if $import-navbar == true {
+//-------------------------------------------------------------------
+//  Navigation Bar
+//-------------------------------------------------------------------
+
+// CSS reused in multiple selectors
+%nav-global {
+  background: $c-black;
+  color: $c-white;
+}
+
+
+
+.nav {
+
+   // TODO: migrate to ems
+   // (currently we don't use them because of iOS compatibility problems
+   // -- has to do with unicode icon for close) */
+
+  // Uncomment for animations
+  // max-height: 1.5em;
+
+  a {
+
+    &:hover {
+      
+    }
+  }
+}
+
+//-------------------------------------------------------------------
+// End @if
+}

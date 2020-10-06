@@ -1,0 +1,7 @@
+{
+  "title": "Travail critique – Simone de Beauvoir",
+  "devDependencies": {
+    "autoprefixer": "^9.1.5",
+    "postcss-cli": "^6.1.2"
+  }
+}
