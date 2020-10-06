@@ -11,10 +11,10 @@ Un modèle de livre numérique avec [Hugo](https://gohugo.io/).
 - [NodeJS](https://nodejs.org/), environnement pour construire les styles
 
 ```bash
-git clone https://github.com/loup-brun/hugo-livre-numerique.git hugo-livre-numerique
+git clone https://github.com/loup-brun/hugo-livre-numerique.git
 
 # se déplacer dans le répertoire
-cd livre-numerique
+cd hugo-livre-numerique
 
 # installer les dépendances NodeJS
 npm i
